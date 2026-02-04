@@ -18,9 +18,10 @@ pos_na_if(c(1, NA, NA, 2, NA, 4, NA),
           c(NA, -5, 2, 4, 4, NA, 11))
 
 # Question 1ii
-
-
-
+pos_na_no_if <- function(x, y) {
+  stopifnot(length(x) == length(y))
+  which(is.na(x) & is.na(y))
+}
 
 # Question 2
 
