@@ -50,9 +50,10 @@ ggplot(wmata_prop, aes(x = factor(day), y = prop)) +
     title = "Daily Ride Proportions by Day of Month")
 
 # Question 3
+V <- c("Bears", "Lions", "Dolphins", "Eagles", "Bengals")
+V
 
-
-
+V[c(1, 3, 5)]
 
 
 # Question 4
