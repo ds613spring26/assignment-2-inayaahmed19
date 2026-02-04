@@ -78,13 +78,26 @@ names(V) <- V
 V[c("Bears", "Dolphins", "Bengals")]
 
 # Question 4
+records <- c(
+  "Steve McQueen | 2020-01-15 | HR",
+  "B. Smith | 15/02/2021 | FIN",
+  "Carlos M | March 3, 2019 | IT",
+  "D. Lee | 2018/07/30 | HR",
+  "Alain Delon | 04-12-2020 | MKT"
+)
 
+df <- tibble(raw = records) %>%
+  separate(raw, into = c("name", "hire_date", "dept"), sep = "\\|") %>%
+  mutate(
+    name = str_trim(name),
+    hire_date = str_trim(hire_date),
+    dept = str_trim(dept),
+    hire_date = parse_date_time(
+      hire_date,
+      orders = c("ymd", "dmy", "mdy", "B d, Y")
+    ),
+    dept = factor(dept, levels = c("HR", "FIN", "IT", "MKT"), ordered = TRUE),
+    years_worked = as.integer(interval(hire_date, today()) / years(1))
+  )
 
-
-
-
-
-
-
-
-
+df
