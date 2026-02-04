@@ -24,11 +24,30 @@ pos_na_no_if <- function(x, y) {
 }
 
 # Question 2
+library(readxl)
+wmata <- read_csv("https://dcgerard.github.io/stat_412_612/data/wmata_ridership.csv")
 
+wmata |>
+  mutate(date = as.Date(Date))
 
+wmata <- wmata |>
+  mutate(year = lubridate::year(Date),
+    month = lubridate::month(Date),
+    day = lubridate::day(Date))
 
+wmata_prop <- wmata |>
+  group_by(year, month) |>
+  mutate(prop = Total / sum(Total)) |>
+  ungroup()
 
+wmata_prop
 
+ggplot(wmata_prop, aes(x = factor(day), y = prop)) +
+  geom_boxplot() +
+  labs(
+    x = "Day of Month",
+    y = "Proportion of Monthly Rides",
+    title = "Daily Ride Proportions by Day of Month")
 
 # Question 3
 
