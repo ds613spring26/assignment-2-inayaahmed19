@@ -64,8 +64,18 @@ for (i in c(1, 3, 5)) {
 result
 
 # Question 3iii
+# a)
+V[c(1, 3, 5)]
 
+# b)
+V[-c(2, 4)]
 
+# c)
+V[V %in% c("Bears", "Dolphins", "Bengals")]
+
+# d)
+names(V) <- V
+V[c("Bears", "Dolphins", "Bengals")]
 
 # Question 4
 
